@@ -20,6 +20,7 @@
         "id": 1,
         "name": "Daniel Rodrigues",
         "email": "21707@stu.ipbeja.pt",
+        "password": "pass",
         "phone": 123456789,
         "birthday": "2002-07-06"
     }]
