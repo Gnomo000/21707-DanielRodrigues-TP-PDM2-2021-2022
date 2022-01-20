@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Woods</string>
+    <string name="PT_LOGOUT">Sair</string>
+    <string name="ENG_LOGOUT">LogOut</string>
+
+    <string name="PT_LOGIN">Entrar</string>
+    <string name="ENG_LOGIN">LogIn</string>
+
+    <string name="PT_RREGISTER">Registrar</string>
+    <string name="ENG_REGISTER">Signin</string>
 </resources>

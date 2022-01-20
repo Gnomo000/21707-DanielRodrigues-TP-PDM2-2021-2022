@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -14,7 +15,9 @@ public interface WoodsService {
     @GET("woods/")
     Call<List<Woods>> getAllWoods();
 
-
     @GET("users/")
     Call<Users> getUserByEmailAndPassword(@Query(value = "email", encoded = true) String email, @Query(value = "password", encoded = true) String password);
+
+    @POST("users/")
+    Call<Users> addUser(Users users);
 }

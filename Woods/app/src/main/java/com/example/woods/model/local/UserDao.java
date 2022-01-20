@@ -11,8 +11,11 @@ import com.example.woods.model.Users;
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM Users WHERE email =:email AND password =:password")
-    Users getUserByEmailAndPassword(String email, String password);
+    LiveData<Users> getUserByEmailAndPassword(String email, String password);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void add(Users users);
+
+    @Query("DELETE FROM Users")
+    void delete();
 }

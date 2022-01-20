@@ -2,6 +2,8 @@ package com.example.woods.model;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.woods.model.local.AppDatabase;
 import com.example.woods.model.local.OrdersDao;
 import com.example.woods.model.local.UserDao;
@@ -29,14 +31,38 @@ public class WoodsRepository {
         this.context = context;
     }
 
-    public Users getUser(String email, String password){
+    public LiveData<Users> getUser(String email, String password){
         this.updateUser(email,password);
         return this.usersDao.getUserByEmailAndPassword(email,password);
     }
 
+
     public void updateUser(String email, String password) {
         WoodsService service = DataSource.getService();
         Call<Users> call = service.getUserByEmailAndPassword(email,password);
+        call.enqueue(new Callback<Users>() {
+            @Override
+            public void onResponse(Call<Users> call, Response<Users> response) {
+                if (response.isSuccessful()) {
+                    Users users = response.body();
+                    usersDao.add(users);
+                }else {
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Users> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+    }
+
+    public void addUser(Users user) {
+        WoodsService service = DataSource.getService();
+        Call<Users> call = service.addUser(user);
         call.enqueue(new Callback<Users>() {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {

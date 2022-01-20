@@ -1,6 +1,7 @@
 package com.example.woods.views;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -48,15 +49,27 @@ public class LoginFragment extends Fragment {
         EditText password = view.findViewById(R.id.editTextPassword);
 
         Button loginButton = view.findViewById(R.id.button);
+        Button siginButton = view.findViewById(R.id.buttonRegister);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Users users = mViewModel.getUser(email.getText().toString(),password.getText().toString());
-                if (users != null) {
-                    mViewModel.saveSession(users);
-                    NavDirections action = LoginFragmentDirections.actionLoginFragmentToMainFragment();
-                    NavHostFragment.findNavController(LoginFragment.this).navigate(action);
-                }
+                mViewModel.getUser(email.getText().toString(),password.getText().toString()).observe(getViewLifecycleOwner(), new Observer<Users>() {
+                    @Override
+                    public void onChanged(Users users) {
+                        if (users != null) {
+                            mViewModel.saveSession(users);
+                            NavDirections action = LoginFragmentDirections.actionLoginFragmentToMainFragment();
+                            NavHostFragment.findNavController(LoginFragment.this).navigate(action);
+                        }
+                    }
+                });
+            }
+        });
+
+        siginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

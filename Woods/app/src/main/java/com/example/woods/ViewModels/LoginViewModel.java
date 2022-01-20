@@ -25,15 +25,11 @@ public class LoginViewModel extends AndroidViewModel {
         return sessionRepository.getActiveSession();
     }
 
-    public Users getUser(String email, String password) {
+    public LiveData<Users> getUser(String email, String password) {
         return woodsRepository.getUser(email,password);
     }
 
     public void saveSession(Users users) {
         this.sessionRepository.saveSession(users);
-    }
-
-    public void clearSession() {
-        this.sessionRepository.clearSession();
     }
 }
