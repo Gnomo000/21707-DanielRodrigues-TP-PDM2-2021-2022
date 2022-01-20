@@ -1,5 +1,5 @@
 {
-    "orders": [{
+    "orders": {
         "id": 1,
         "woods_id": 1,
         "users_id": 1,
@@ -7,21 +7,21 @@
         "quantity": "20",
         "size": "1920 x 1080",
         "status": "Entregue"
-    }],
-    "woods": [{
+    },
+    "woods": {
         "id": 1,
         "wood_type": "Pine",
         "user_id": 1,
         "color": "Red",
         "size": "1920 x 1080",
         "quantity": 25
-    }],
-    "users": [{
+    },
+    "users": {
         "id": 1,
         "name": "Daniel Rodrigues",
         "email": "21707@stu.ipbeja.pt",
         "password": "pass",
         "phone": 123456789,
         "birthday": "2002-07-06"
-    }]
+    }
 }

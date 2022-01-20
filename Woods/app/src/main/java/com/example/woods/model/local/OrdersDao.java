@@ -1,4 +1,7 @@
 package com.example.woods.model.local;
 
-public class OrdersDao {
+import androidx.room.Dao;
+
+@Dao
+public interface OrdersDao {
 }

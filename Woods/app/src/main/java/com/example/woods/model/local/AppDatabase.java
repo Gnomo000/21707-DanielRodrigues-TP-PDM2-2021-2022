@@ -13,7 +13,7 @@ import com.example.woods.model.Woods;
 @Database(entities = {Orders.class, Users.class, Woods.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract OrdersDao getOrdersDao();
-    public abstract UsersDao getUsersDao();
+    public abstract UserDao getUsersDao();
     public abstract WoodsDao getWoodsDao();
 
     private static AppDatabase INSTANCE;

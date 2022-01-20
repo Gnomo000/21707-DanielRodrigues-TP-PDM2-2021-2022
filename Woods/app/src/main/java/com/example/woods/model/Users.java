@@ -7,17 +7,19 @@ import java.util.Date;
 
 @Entity
 public class Users {
-    @PrimaryKey()
+    @PrimaryKey
     private int id;
     private String name;
     private String email;
+    private String password;
     private int phone;
-    private Date birthday;
+    private String birthday;
 
-    public Users(int id, String name, String email, int phone, Date birthday) {
+    public Users(int id, String name, String email, String password, int phone, String birthday) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.phone = phone;
         this.birthday = birthday;
     }
@@ -46,6 +48,14 @@ public class Users {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getPhone() {
         return phone;
     }
@@ -54,11 +64,11 @@ public class Users {
         this.phone = phone;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 }
