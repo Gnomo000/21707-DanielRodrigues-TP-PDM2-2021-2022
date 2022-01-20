@@ -19,9 +19,16 @@
     "users": [{
         "id": 1,
         "name": "Daniel Rodrigues",
-        "email": "21707@stu.ipbeja.pt",
+        "email": "ex1@mail.com",
         "password": "pass",
         "phone": 123456789,
         "birthday": "2002-07-06"
+    },{
+        "id": 2,
+        "name": "André Rodrigues",
+        "email": "ex2@mail.com",
+        "password": "pass",
+        "phone": 123456789,
+        "birthday": "2007-01-20"
     }]
 }
