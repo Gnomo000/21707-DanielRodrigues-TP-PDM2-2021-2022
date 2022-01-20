@@ -21,6 +21,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void clearSession() {
+        this.woodsRepository.deleteUsers();
         this.sessionRepository.clearSession();
     }
 

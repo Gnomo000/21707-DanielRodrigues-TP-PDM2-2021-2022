@@ -11,6 +11,8 @@ import com.example.woods.model.local.WoodsDao;
 import com.example.woods.model.remote.DataSource;
 import com.example.woods.model.remote.WoodsService;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,16 +38,29 @@ public class WoodsRepository {
         return this.usersDao.getUserByEmailAndPassword(email,password);
     }
 
+    public void deleteUsers(){
+        usersDao.delete();
+    }
 
     public void updateUser(String email, String password) {
         WoodsService service = DataSource.getService();
-        Call<Users> call = service.getUserByEmailAndPassword(email,password);
-        call.enqueue(new Callback<Users>() {
+        Call<List<Users>> call = service.getUserByEmailAndPassword(email,password);
+        call.enqueue(new Callback<List<Users>>() {
             @Override
-            public void onResponse(Call<Users> call, Response<Users> response) {
+            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
                 if (response.isSuccessful()) {
-                    Users users = response.body();
-                    usersDao.add(users);
+                    List<Users> users = response.body();
+                    if (users.size() > 0) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (Users users:
+                                     users) {
+                                    usersDao.add(users);
+                                }
+                            }
+                        }).start();
+                    }
                 }else {
 
                 }
@@ -53,7 +68,7 @@ public class WoodsRepository {
             }
 
             @Override
-            public void onFailure(Call<Users> call, Throwable t) {
+            public void onFailure(Call<List<Users>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
