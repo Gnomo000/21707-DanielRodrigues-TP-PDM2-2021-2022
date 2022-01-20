@@ -29,7 +29,12 @@ public class WoodsRepository {
         this.context = context;
     }
 
-    public Users getUser(String email, String password) {
+    public Users getUser(String email, String password){
+        this.updateUser(email,password);
+        return this.usersDao.getUserByEmailAndPassword(email,password);
+    }
+
+    public void updateUser(String email, String password) {
         WoodsService service = DataSource.getService();
         Call<Users> call = service.getUserByEmailAndPassword(email,password);
         call.enqueue(new Callback<Users>() {
@@ -37,7 +42,6 @@ public class WoodsRepository {
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if (response.isSuccessful()) {
                     Users users = response.body();
-                    finalUsers = users;
                     usersDao.add(users);
                 }else {
 
@@ -51,7 +55,6 @@ public class WoodsRepository {
             }
         });
 
-        return finalUsers;
     }
 
 }

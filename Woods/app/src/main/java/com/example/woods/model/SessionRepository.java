@@ -15,8 +15,8 @@ public class SessionRepository {
         return SessionManager.getActiveSession(this.context);
     }
 
-    public void saveSession(String email, String password) {
-        SessionManager.saveSession(this.context,email,password);
+    public void saveSession(Users users) {
+        SessionManager.saveSession(this.context,users);
     }
 
     public void clearSession() {

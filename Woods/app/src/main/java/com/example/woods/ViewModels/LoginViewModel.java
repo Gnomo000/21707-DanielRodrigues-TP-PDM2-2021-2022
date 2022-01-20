@@ -29,8 +29,8 @@ public class LoginViewModel extends AndroidViewModel {
         return woodsRepository.getUser(email,password);
     }
 
-    public void saveSession(String email, String password) {
-        this.sessionRepository.saveSession(email,password);
+    public void saveSession(Users users) {
+        this.sessionRepository.saveSession(users);
     }
 
     public void clearSession() {

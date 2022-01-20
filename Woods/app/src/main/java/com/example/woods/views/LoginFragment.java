@@ -8,7 +8,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.navigation.NavHostController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,7 @@ import android.widget.EditText;
 import com.example.woods.ViewModels.LoginViewModel;
 import com.example.woods.R;
 import com.example.woods.model.Users;
+import com.example.woods.model.local.AppDatabase;
 
 public class LoginFragment extends Fragment {
 
@@ -27,7 +31,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.login_fragment, container, false);
-
     }
 
     @Override
@@ -37,23 +40,22 @@ public class LoginFragment extends Fragment {
 
         Users activeSession = mViewModel.getActiveSession();
         if (activeSession != null) {
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainFragment);
+            NavDirections action = LoginFragmentDirections.actionLoginFragmentToMainFragment();
+            NavHostFragment.findNavController(LoginFragment.this).navigate(action);
         }
 
-        EditText editText = (EditText) view.findViewById(R.id.editTextEmail);
-        EditText editText1 = (EditText) view.findViewById(R.id.editTextPassword);
+        EditText email = view.findViewById(R.id.editTextEmail);
+        EditText password = view.findViewById(R.id.editTextPassword);
 
         Button loginButton = view.findViewById(R.id.button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String email = editText.getText().toString();
-                String password = editText1.getText().toString();
-                Users users = mViewModel.getUser(email,password);
+                Users users = mViewModel.getUser(email.getText().toString(),password.getText().toString());
                 if (users != null) {
-                    mViewModel.saveSession(email,password);
-                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainFragment);
+                    mViewModel.saveSession(users);
+                    NavDirections action = LoginFragmentDirections.actionLoginFragmentToMainFragment();
+                    NavHostFragment.findNavController(LoginFragment.this).navigate(action);
                 }
             }
         });
