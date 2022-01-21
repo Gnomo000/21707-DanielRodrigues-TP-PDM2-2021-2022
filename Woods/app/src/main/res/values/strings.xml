@@ -1,11 +1,21 @@
 <resources>
     <string name="app_name">Woods</string>
-    <string name="PT_LOGOUT">Sair</string>
-    <string name="ENG_LOGOUT">LogOut</string>
+    <string name="LOGOUT">Sair</string>
+    <string name="LOGIN">Entrar</string>
+    <string name="SIGIN">Registrar</string>
+    <string name="EDITPROFILE">Editar Perfil</string>
 
-    <string name="PT_LOGIN">Entrar</string>
-    <string name="ENG_LOGIN">LogIn</string>
+    <string name="NAME">Nome</string>
+    <string name="EMAIL">Email</string>
+    <string name="PASSWORD">Palavra-chave</string>
+    <string name="PHONE">Telemóvel</string>
+    <string name="BIRTHDAY">Aniversário</string>
 
-    <string name="PT_RREGISTER">Registrar</string>
-    <string name="ENG_REGISTER">Signin</string>
+    <string name="ERROR_PASSWORD">Erro! Email/Palavra-chave incorretos/inexistentes</string>
+    <string name="ERROR_ADDUSER">Erro! Falha ao introduzir o Utilizador</string>
+
+    <string name="WOODS_TYPE">Tipo de Madeira:</string>
+    <string name="WOODS_COLOR">Cor:</string>
+    <string name="WOODS_SIZE">Tamanho:</string>
+    <string name="WOODS_QUANTITY">Quantidade:</string>
 </resources>

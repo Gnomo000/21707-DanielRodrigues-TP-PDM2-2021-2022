@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Woods</string>
+    <string name="LOGOUT">Log Out</string>
+    <string name="LOGIN">Log In</string>
+    <string name="SIGIN">Sign In</string>
+    <string name="EDITPROFILE">Edit Profile</string>
+
+    <string name="NAME">Name</string>
+    <string name="EMAIL">Email</string>
+    <string name="PASSWORD">Password</string>
+    <string name="PHONE">Phone</string>
+    <string name="BIRTHDAY">Birthday</string>
+
+    <string name="ERROR_PASSWORD">Error! Email/Password incorrect/non-existent</string>
+    <string name="ERROR_ADDUSER">Error! Failed to enter the User</string>
+    <string name="WOODS_TYPE">Wood Type:</string>
+    <string name="WOODS_COLOR">Color:</string>
+    <string name="WOODS_SIZE">Size:</string>
+    <string name="WOODS_QUANTITY">Quantity:</string>
+</resources>

@@ -53,7 +53,7 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mViewModel.getUser(email.getText().toString(),password.getText().toString()).observe(getViewLifecycleOwner(), new Observer<Users>() {
+                mViewModel.getUser(LoginFragment.this.getContext(),email.getText().toString(),password.getText().toString()).observe(getViewLifecycleOwner(), new Observer<Users>() {
                     @Override
                     public void onChanged(Users users) {
                         if (users != null) {
@@ -69,7 +69,8 @@ public class LoginFragment extends Fragment {
         siginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                NavDirections action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment();
+                NavHostFragment.findNavController(LoginFragment.this).navigate(action);
             }
         });
 

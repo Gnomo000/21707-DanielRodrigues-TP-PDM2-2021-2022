@@ -7,13 +7,27 @@
         "quantity": "20",
         "size": "1920 x 1080",
         "status": "Entregue"
+    },{
+        "id": 2,
+        "woods_id": 2,
+        "users_id": 1,
+        "street": "Rua dos Gnomos",
+        "quantity": "15",
+        "size": "1920 x 1080",
+        "status": "Por Entregar"
     }],
     "woods": [{
         "id": 1,
         "wood_type": "Pine",
-        "color": "Red",
+        "color": "Brown",
         "size": "1920 x 1080",
         "quantity": 25
+    },{
+        "id": 2,
+        "wood_type": "Birch",
+        "color": "White",
+        "size": "1920 x 1080",
+        "quantity": 78
     }],
     "users": [{
         "id": 1,

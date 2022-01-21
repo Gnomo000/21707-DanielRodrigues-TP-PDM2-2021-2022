@@ -9,15 +9,13 @@ public class Woods {
     @PrimaryKey
     private int id;
     private String wood_type;
-    private int user_id;
     private String color;
     private String size;
     private int quantity;
 
-    public Woods(int id, String wood_type, int user_id, String color, String size, int quantity) {
+    public Woods(int id, String wood_type, String color, String size, int quantity) {
         this.id = id;
         this.wood_type = wood_type;
-        this.user_id = user_id;
         this.color = color;
         this.size = size;
         this.quantity = quantity;
@@ -37,14 +35,6 @@ public class Woods {
 
     public void setWood_type(String wood_type) {
         this.wood_type = wood_type;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getColor() {

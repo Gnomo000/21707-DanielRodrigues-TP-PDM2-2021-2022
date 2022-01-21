@@ -24,6 +24,10 @@ public class Users {
         this.birthday = birthday;
     }
 
+    public static Users createUser(String name,String email,String password, int phone, String birthday){
+        return new Users(0,name,email,password,phone,birthday);
+    }
+
     public int getId() {
         return id;
     }
