@@ -14,8 +14,19 @@
 
     <string name="ERROR_PASSWORD">Error! Email/Password incorrect/non-existent</string>
     <string name="ERROR_ADDUSER">Error! Failed to enter the User</string>
+    <string name="ERROR_USER_EXIST">Error! Email already exists</string>
+
     <string name="WOODS_TYPE">Wood Type:</string>
     <string name="WOODS_COLOR">Color:</string>
     <string name="WOODS_SIZE">Size:</string>
     <string name="WOODS_QUANTITY">Quantity:</string>
+
+    <string name="WOODS_ORDER">Add Order</string>
+
+    <string name="ORDERS_STREET">Street</string>
+    <string name="ORDERS_QUANTITY">Quantity</string>
+    <string name="ORDERS_SIZE">Size</string>
+    <string name="ORDERS_STATUS">Status</string>
+
+    <string name="ERROR_ADDORDER">Error! Incomplete Fields</string>
 </resources>

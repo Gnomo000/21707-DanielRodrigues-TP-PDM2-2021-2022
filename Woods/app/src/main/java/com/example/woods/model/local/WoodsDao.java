@@ -18,4 +18,7 @@ public interface WoodsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void add(Woods post);
+
+    @Query("SELECT * FROM Woods WHERE id =:id")
+    LiveData<Woods> getWoodById(int id);
 }

@@ -22,6 +22,8 @@ import com.example.woods.R;
 import com.example.woods.ViewModels.RegisterViewModel;
 import com.example.woods.model.Users;
 
+import java.util.List;
+
 public class RegisterFragment extends Fragment {
 
     private RegisterViewModel mViewModel;
@@ -53,8 +55,18 @@ public class RegisterFragment extends Fragment {
                 String intPhone = phone.getText().toString();
                 String stringBirthday = birthday.getText().toString();
 
-                if (!stringName.isEmpty() || !stringEmail.isEmpty() || !stringPassword.isEmpty() || !intPhone.isEmpty() || !stringBirthday.isEmpty()) {
-                    mViewModel.seeIfExist(RegisterFragment.this,mViewModel,RegisterFragment.this.getContext(),stringName,stringEmail,stringPassword,Integer.parseInt(intPhone),stringBirthday);
+                if (!stringName.isEmpty() && !stringEmail.isEmpty() && !stringPassword.isEmpty() && !intPhone.isEmpty() && !stringBirthday.isEmpty()) {
+                    Users usersSeeIfExist = mViewModel.seeIfExist(stringName,stringEmail,stringPassword,Integer.parseInt(intPhone),stringBirthday);
+                    if (usersSeeIfExist == null) {
+                        Users users = Users.createUser(stringName,stringEmail,stringPassword,Integer.parseInt(intPhone),stringBirthday);
+                        mViewModel.addUserAtDAO(users);
+                        mViewModel.saveSession(users);
+                        NavDirections action = RegisterFragmentDirections.actionRegisterFragmentToMainFragment();
+                        NavHostFragment.findNavController(RegisterFragment.this).navigate(action);
+                    }else {
+                        Toast toast = Toast.makeText(RegisterFragment.this.getContext(), R.string.ERROR_USER_EXIST,Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }else {
                     Toast toast = Toast.makeText(RegisterFragment.this.getContext(), R.string.ERROR_ADDUSER,Toast.LENGTH_SHORT);
                     toast.show();

@@ -1,9 +1,13 @@
 package com.example.woods.views;
 
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -59,9 +63,10 @@ public class MainFragment extends Fragment {
                 mViewModel.updateList();
             }
         });
+        
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        this.adapter = new Adapter(this.getContext());
+        this.adapter = new Adapter(this.getContext(),mViewModel.getActiveSession());
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(this.adapter);
 
@@ -72,9 +77,10 @@ public class MainFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-
+        
         setHasOptionsMenu(true);
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -83,11 +89,10 @@ public class MainFragment extends Fragment {
         menu.add(0, 2, 2, menuIconWithText(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_logout, null)), getResources().getString(R.string.LOGOUT)));
     }
 
-    private CharSequence menuIconWithText(Drawable r, String title) {
-
-        r.setBounds(0, 0, r.getIntrinsicWidth(), r.getIntrinsicHeight());
+    private CharSequence menuIconWithText(Drawable drawable, String title) {
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         SpannableString sb = new SpannableString("    " + title);
-        ImageSpan imageSpan = new ImageSpan(r, ImageSpan.ALIGN_BOTTOM);
+        ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
         sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return sb;
@@ -105,4 +110,5 @@ public class MainFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

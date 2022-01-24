@@ -34,7 +34,7 @@ public class WoodsRepository {
     private WoodsDao woodsDao;
     private OrdersDao ordersDao;
     private UserDao usersDao;
-
+    private Users finalUsers;
 
     public WoodsRepository(Context context) {
         this.woodsDao = AppDatabase.getInstance(context).getWoodsDao();
@@ -51,6 +51,7 @@ public class WoodsRepository {
     public void deleteUsers(){
         usersDao.delete();
     }
+
 
     public void updateUsers(Context context,String email, String password) {
         WoodsService service = DataSource.getService();
@@ -84,7 +85,12 @@ public class WoodsRepository {
 
     }
 
-    public void seeIfExist(RegisterFragment registerFragment, RegisterViewModel mViewModel, Context context, String name, String email, String password, int phone, String birthday) {
+    public void addUserAtDAO(Users users){
+        usersDao.add(users);
+    }
+
+
+    public Users seeIfExist(String name, String email, String password, int phone, String birthday) {
         WoodsService service = DataSource.getService();
         Call<List<Users>> call = service.getUserByEmail(email);
         call.enqueue(new Callback<List<Users>>() {
@@ -93,8 +99,7 @@ public class WoodsRepository {
                 if (response.isSuccessful()) {
                     List<Users> usersList = response.body();
                     if (usersList.size() > 0) {
-                        Toast toast = Toast.makeText(context, R.string.ERROR_PASSWORD,Toast.LENGTH_SHORT);
-                        toast.show();
+                        finalUsers = null;
                     }else {
                         Users users = Users.createUser(name,email,password,phone,birthday);
                         Call<Users> usersCall = service.addUser(users);
@@ -103,10 +108,7 @@ public class WoodsRepository {
                             public void onResponse(Call<Users> call, Response<Users> response) {
                                 if (response.isSuccessful()) {
                                     Users users = response.body();
-                                    usersDao.add(users);
-                                    mViewModel.saveSession(users);
-                                    NavDirections action = RegisterFragmentDirections.actionRegisterFragmentToMainFragment();
-                                    NavHostFragment.findNavController(registerFragment).navigate(action);
+                                    finalUsers = users;
                                 }
                             }
 
@@ -125,12 +127,14 @@ public class WoodsRepository {
             }
         });
 
+        return finalUsers;
     }
 
     public LiveData<List<Woods>> getWoods() {
         this.updateWoods();
         return this.woodsDao.getAllWoods();
     }
+
 
     public void updateWoods() {
         WoodsService service = DataSource.getService();
@@ -163,5 +167,9 @@ public class WoodsRepository {
                 t.printStackTrace();
             }
         });
+    }
+
+    public LiveData<Woods> getWoodById(int id) {
+        return this.woodsDao.getWoodById(id);
     }
 }

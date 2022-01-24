@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_woodsDetailsFragment"
+            app:destination="@id/woodsDetailsFragment" />
     </fragment>
 
     <fragment
@@ -33,6 +36,15 @@
         tools:layout="@layout/register_fragment">
         <action
             android:id="@+id/action_registerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/woodsDetailsFragment"
+        android:name="com.example.woods.views.WoodsDetailsFragment"
+        android:label="woods_details_fragment"
+        tools:layout="@layout/woods_details_fragment" >
+        <action
+            android:id="@+id/action_woodsDetailsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

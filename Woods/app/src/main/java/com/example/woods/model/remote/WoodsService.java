@@ -25,4 +25,7 @@ public interface WoodsService {
 
     @GET("woods/")
     Call<List<Woods>> getAllWoods();
+
+    @GET("users/")
+    Call<List<Users>> getAllUsers();
 }

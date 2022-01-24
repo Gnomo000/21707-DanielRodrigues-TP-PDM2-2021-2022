@@ -13,9 +13,19 @@
 
     <string name="ERROR_PASSWORD">Erro! Email/Palavra-chave incorretos/inexistentes</string>
     <string name="ERROR_ADDUSER">Erro! Falha ao introduzir o Utilizador</string>
+    <string name="ERROR_USER_EXIST">Erro! Email já existente</string>
 
     <string name="WOODS_TYPE">Tipo de Madeira:</string>
     <string name="WOODS_COLOR">Cor:</string>
     <string name="WOODS_SIZE">Tamanho:</string>
     <string name="WOODS_QUANTITY">Quantidade:</string>
+
+    <string name="WOODS_ORDER">Adicionar Encomenda</string>
+
+    <string name="ORDERS_STREET">Rua</string>
+    <string name="ORDERS_QUANTITY">Quantidade</string>
+    <string name="ORDERS_SIZE">Tamanho</string>
+    <string name="ORDERS_STATUS">Estado</string>
+
+    <string name="ERROR_ADDORDER">Erro! Campos Incompletos</string>
 </resources>

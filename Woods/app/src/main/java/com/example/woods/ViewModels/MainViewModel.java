@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.woods.model.SessionRepository;
+import com.example.woods.model.Users;
 import com.example.woods.model.Woods;
 import com.example.woods.model.WoodsRepository;
 
@@ -34,6 +35,10 @@ public class MainViewModel extends AndroidViewModel {
     public void clearSession() {
         this.woodsRepository.deleteUsers();
         this.sessionRepository.clearSession();
+    }
+
+    public Users getActiveSession() {
+        return sessionRepository.getActiveSession();
     }
 
 }
