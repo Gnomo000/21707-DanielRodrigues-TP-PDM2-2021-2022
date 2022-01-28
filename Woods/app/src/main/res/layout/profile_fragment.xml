@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.RegisterFragment">
+    tools:context=".views.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextRegisterName"
+            android:id="@+id/editTextSaveName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -33,8 +33,8 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <TextView
             android:id="@+id/textView"
@@ -44,11 +44,11 @@
             android:text="@string/EMAIL"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/editTextRegisterName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextRegisterName" />
+            app:layout_constraintStart_toStartOf="@+id/editTextSaveName"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSaveName" />
 
         <EditText
-            android:id="@+id/editTextRegisterEmail"
+            android:id="@+id/editTextSaveEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -56,7 +56,7 @@
             android:hint="@string/EMAIL"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextRegisterName"
+            app:layout_constraintEnd_toEndOf="@+id/editTextSaveName"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -68,11 +68,11 @@
             android:text="@string/PASSWORD"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/editTextRegisterEmail"
-            app:layout_constraintTop_toBottomOf="@+id/editTextRegisterEmail" />
+            app:layout_constraintStart_toStartOf="@+id/editTextSaveEmail"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSaveEmail" />
 
         <EditText
-            android:id="@+id/editTextRegisterPassword"
+            android:id="@+id/editTextSavePassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,7 +80,7 @@
             android:hint="@string/PASSWORD"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextRegisterEmail"
+            app:layout_constraintEnd_toEndOf="@+id/editTextSaveEmail"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -92,11 +92,11 @@
             android:text="@string/PHONE"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/editTextRegisterPassword"
-            app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPassword" />
+            app:layout_constraintStart_toStartOf="@+id/editTextSavePassword"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSavePassword" />
 
         <EditText
-            android:id="@+id/editTextRegisterPhone"
+            android:id="@+id/editTextSavePhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -104,7 +104,7 @@
             android:hint="@string/PHONE"
             android:inputType="phone"
             android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextRegisterPassword"
+            app:layout_constraintEnd_toEndOf="@+id/editTextSavePassword"
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -116,26 +116,26 @@
             android:text="@string/BIRTHDAY"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/editTextRegisterPhone"
-            app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPhone" />
+            app:layout_constraintStart_toStartOf="@+id/editTextSavePhone"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSavePhone" />
 
         <Button
-            android:id="@+id/buttonNewRegister"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/SIGIN"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editTextRegisterPhone"
-            app:layout_constraintStart_toStartOf="@+id/editTextRegisterPhone" />
-
-        <Button
-            android:id="@+id/buttonRegisterBirthday"
+            android:id="@+id/buttonSaveBirthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/BIRTHDAY"
             app:layout_constraintStart_toStartOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/SAVE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextSavePhone"
+            app:layout_constraintStart_toStartOf="@+id/buttonSaveBirthday" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

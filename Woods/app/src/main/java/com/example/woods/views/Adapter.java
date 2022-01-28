@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.woods.R;
-import com.example.woods.model.Users;
+import com.example.woods.model.User;
 import com.example.woods.model.Woods;
 
 import java.util.ArrayList;
@@ -19,14 +19,14 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private List<Woods> woodsList;
-    private Users users;
+    private User user;
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public Adapter(Context context, Users users) {
+    public Adapter(Context context, User user) {
         this.context = context;
         this.woodsList = new ArrayList<>();
-        this.users = users;
+        this.user = user;
         this.layoutInflater = LayoutInflater.from(context);
     }
 
@@ -40,7 +40,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
         Woods woods = this.woodsList.get(position);
-        Users users = this.users;
+        User user = this.user;
         holder.wood_type.setText(woods.getWood_type());
         holder.color.setText(woods.getColor());
         holder.size.setText(woods.getSize());
@@ -48,7 +48,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WoodsDetailsFragment.startFragment(woods.getId(), v,users);
+                WoodsDetailsFragment.startFragment(woods.getId(), v, user);
             }
         });
     }

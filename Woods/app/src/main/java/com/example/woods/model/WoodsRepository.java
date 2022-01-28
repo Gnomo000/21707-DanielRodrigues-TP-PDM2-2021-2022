@@ -1,26 +1,16 @@
 package com.example.woods.model;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.woods.R;
-import com.example.woods.ViewModels.RegisterViewModel;
 import com.example.woods.model.local.AppDatabase;
-import com.example.woods.model.local.OrdersDao;
-import com.example.woods.model.local.UserDao;
 import com.example.woods.model.local.WoodsDao;
 import com.example.woods.model.remote.DataSource;
 import com.example.woods.model.remote.WoodsService;
-import com.example.woods.views.LoginFragment;
-import com.example.woods.views.LoginFragmentDirections;
-import com.example.woods.views.RegisterFragment;
-import com.example.woods.views.RegisterFragmentDirections;
 
 import java.util.List;
 
@@ -32,109 +22,88 @@ public class WoodsRepository {
 
     private final Context context;
     private WoodsDao woodsDao;
-    private OrdersDao ordersDao;
-    private UserDao usersDao;
-    private Users finalUsers;
+    private User finalUser;
 
     public WoodsRepository(Context context) {
         this.woodsDao = AppDatabase.getInstance(context).getWoodsDao();
-        this.ordersDao = AppDatabase.getInstance(context).getOrdersDao();
-        this.usersDao = AppDatabase.getInstance(context).getUsersDao();
+        //this.ordersDao = AppDatabase.getInstance(context).getOrdersDao();
         this.context = context;
     }
 
-    public LiveData<Users> getUser(Context context,String email, String password){
-        this.updateUsers(context,email,password);
-        return this.usersDao.getUserByEmailAndPassword(email,password);
-    }
 
-    public void deleteUsers(){
-        usersDao.delete();
-    }
-
-
-    public void updateUsers(Context context,String email, String password) {
+    public LiveData<User> getUser(Context context,String email, String password) {
+        MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
         WoodsService service = DataSource.getService();
-        Call<List<Users>> call = service.getUserByEmailAndPassword(email,password);
-        call.enqueue(new Callback<List<Users>>() {
+        service.getUserByEmailAndPassword(email,password).enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful()) {
-                    List<Users> users = response.body();
+                    List<User> users = response.body();
                     if (users.size() > 0) {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                for (Users users:
-                                     users) {
-                                    usersDao.add(users);
-                                }
-                            }
-                        }).start();
+                        userMutableLiveData.postValue(response.body().get(0));
                     }else {
+                        userMutableLiveData.postValue(null);
                         Toast toast = Toast.makeText(context, R.string.ERROR_PASSWORD,Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 }
             }
+
             @Override
-            public void onFailure(Call<List<Users>> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                userMutableLiveData.postValue(null);
             }
         });
 
+        return userMutableLiveData;
     }
 
-    public void addUserAtDAO(Users users){
-        usersDao.add(users);
-    }
-
-
-    public Users seeIfExist(String name, String email, String password, int phone, String birthday) {
+    public void addOrder(Orders orders){
         WoodsService service = DataSource.getService();
-        Call<List<Users>> call = service.getUserByEmail(email);
-        call.enqueue(new Callback<List<Users>>() {
+        Call<Orders> call = service.addOrder(orders);
+        call.enqueue(new Callback<Orders>() {
             @Override
-            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
+            public void onResponse(Call<Orders> call, Response<Orders> response) {
+                Orders orders1 = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<Orders> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public User seeIfExist(String name, String email, String password, int phone, String birthday) {
+        WoodsService service = DataSource.getService();
+        Call<List<User>> call = service.getUserByEmail(email);
+        call.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful()) {
-                    List<Users> usersList = response.body();
-                    if (usersList.size() > 0) {
-                        finalUsers = null;
+                    List<User> userList = response.body();
+                    if (userList.size() > 0) {
+                        finalUser = null;
                     }else {
-                        Users users = Users.createUser(name,email,password,phone,birthday);
-                        Call<Users> usersCall = service.addUser(users);
-                        usersCall.enqueue(new Callback<Users>() {
-                            @Override
-                            public void onResponse(Call<Users> call, Response<Users> response) {
-                                if (response.isSuccessful()) {
-                                    Users users = response.body();
-                                    finalUsers = users;
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<Users> call, Throwable t) {
-
-                            }
-                        });
+                        User user = User.createUser(name,email,password,phone,birthday);
+                        finalUser = user;
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Users>> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
 
             }
         });
 
-        return finalUsers;
+        return finalUser;
     }
 
     public LiveData<List<Woods>> getWoods() {
         this.updateWoods();
         return this.woodsDao.getAllWoods();
     }
-
 
     public void updateWoods() {
         WoodsService service = DataSource.getService();
@@ -149,7 +118,6 @@ public class WoodsRepository {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                // Update list on Room Table
                                 for (Woods woods :
                                         postList) {
                                     woodsDao.add(woods);
@@ -171,5 +139,68 @@ public class WoodsRepository {
 
     public LiveData<Woods> getWoodById(int id) {
         return this.woodsDao.getWoodById(id);
+    }
+
+    public LiveData<User> createUser(User user) {
+        MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
+        WoodsService service = DataSource.getService();
+        service.addUser(user).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    userMutableLiveData.postValue(response.body());
+                } else {
+                    userMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                userMutableLiveData.postValue(null);
+            }
+        });
+        return userMutableLiveData;
+    }
+
+
+    public LiveData<List<Orders>> getOrders(User user) {
+        MutableLiveData<List<Orders>> userMutableLiveData = new MutableLiveData<>();
+        WoodsService service = DataSource.getService();
+        service.getOrderById(user.getId()).enqueue(new Callback<List<Orders>>() {
+            @Override
+            public void onResponse(Call<List<Orders>> call, Response<List<Orders>> response) {
+                if (response.isSuccessful()) {
+                    userMutableLiveData.postValue(response.body());
+                } else {
+                    userMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Orders>> call, Throwable t) {
+                userMutableLiveData.postValue(null);
+            }
+        });
+        return userMutableLiveData;
+    }
+
+    public void updateUser(int id, User user) {
+        WoodsService service = DataSource.getService();
+        Call<User> call = service.updateUser(id,user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    User user = response.body();
+                }else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

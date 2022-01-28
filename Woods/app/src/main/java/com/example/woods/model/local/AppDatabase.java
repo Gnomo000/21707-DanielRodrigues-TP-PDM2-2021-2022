@@ -7,13 +7,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.woods.model.Orders;
-import com.example.woods.model.Users;
+import com.example.woods.model.User;
 import com.example.woods.model.Woods;
 
-@Database(entities = {Orders.class, Users.class, Woods.class}, version = 1)
+@Database(entities = {Woods.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract OrdersDao getOrdersDao();
-    public abstract UserDao getUsersDao();
     public abstract WoodsDao getWoodsDao();
 
     private static AppDatabase INSTANCE;

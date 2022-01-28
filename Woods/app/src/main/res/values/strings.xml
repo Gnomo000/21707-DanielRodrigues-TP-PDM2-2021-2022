@@ -2,14 +2,16 @@
     <string name="app_name">Woods</string>
     <string name="LOGOUT">Sair</string>
     <string name="LOGIN">Entrar</string>
+    <string name="SAVE">Salvar</string>
     <string name="SIGIN">Registrar</string>
     <string name="EDITPROFILE">Editar Perfil</string>
+    <string name="MY_ORDERS">Encomendas</string>
 
     <string name="NAME">Nome</string>
     <string name="EMAIL">Email</string>
     <string name="PASSWORD">Palavra-chave</string>
     <string name="PHONE">Telemóvel</string>
-    <string name="BIRTHDAY">Aniversário</string>
+    <string name="BIRTHDAY">Data de Nascimento</string>
 
     <string name="ERROR_PASSWORD">Erro! Email/Palavra-chave incorretos/inexistentes</string>
     <string name="ERROR_ADDUSER">Erro! Falha ao introduzir o Utilizador</string>
@@ -23,9 +25,10 @@
     <string name="WOODS_ORDER">Adicionar Encomenda</string>
 
     <string name="ORDERS_STREET">Rua</string>
+    <string name="ORDERS_STREET_DOOTS">Rua:</string>
     <string name="ORDERS_QUANTITY">Quantidade</string>
-    <string name="ORDERS_SIZE">Tamanho</string>
     <string name="ORDERS_STATUS">Estado</string>
 
     <string name="ERROR_ADDORDER">Erro! Campos Incompletos</string>
+    <string name="ERROR_ADDORDER_TWO">Erro! Quantidade indisponível</string>
 </resources>

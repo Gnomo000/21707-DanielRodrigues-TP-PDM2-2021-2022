@@ -3,10 +3,8 @@ package com.example.woods.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity
-public class Users {
+public class User {
     @PrimaryKey
     private int id;
     private String name;
@@ -15,7 +13,7 @@ public class Users {
     private int phone;
     private String birthday;
 
-    public Users(int id, String name, String email, String password, int phone, String birthday) {
+    public User(int id, String name, String email, String password, int phone, String birthday) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -24,8 +22,8 @@ public class Users {
         this.birthday = birthday;
     }
 
-    public static Users createUser(String name,String email,String password, int phone, String birthday){
-        return new Users(0,name,email,password,phone,birthday);
+    public static User createUser(String name, String email, String password, int phone, String birthday){
+        return new User(0,name,email,password,phone,birthday);
     }
 
     public int getId() {

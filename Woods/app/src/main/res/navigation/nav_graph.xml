@@ -27,6 +27,12 @@
         <action
             android:id="@+id/action_mainFragment_to_woodsDetailsFragment"
             app:destination="@id/woodsDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
@@ -45,6 +51,24 @@
         tools:layout="@layout/woods_details_fragment" >
         <action
             android:id="@+id/action_woodsDetailsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.woods.views.OrdersFragment"
+        android:label="orders_fragment"
+        tools:layout="@layout/orders_fragment" >
+        <action
+            android:id="@+id/action_ordersFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.woods.views.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

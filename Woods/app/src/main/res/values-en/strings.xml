@@ -5,6 +5,7 @@
     <string name="LOGIN">Log In</string>
     <string name="SIGIN">Sign In</string>
     <string name="EDITPROFILE">Edit Profile</string>
+    <string name="MY_ORDERS">Orders</string>
 
     <string name="NAME">Name</string>
     <string name="EMAIL">Email</string>
@@ -24,9 +25,11 @@
     <string name="WOODS_ORDER">Add Order</string>
 
     <string name="ORDERS_STREET">Street</string>
+    <string name="ORDERS_STREET_DOOTS">Street:</string>
     <string name="ORDERS_QUANTITY">Quantity</string>
-    <string name="ORDERS_SIZE">Size</string>
     <string name="ORDERS_STATUS">Status</string>
 
     <string name="ERROR_ADDORDER">Error! Incomplete Fields</string>
+    <string name="ERROR_ADDORDER_TWO">Erro! Quantity unavailable</string>
+    <string name="SAVE">Save</string>
 </resources>

@@ -76,34 +76,11 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/ORDERS_QUANTITY"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="@+id/editTextStreetChange"
             app:layout_constraintStart_toStartOf="@+id/textViewQuantity"
             app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
-
-        <TextView
-            android:id="@+id/textViewStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/ORDERS_SIZE"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/editTextQuantityChange"
-            app:layout_constraintTop_toBottomOf="@+id/editTextQuantityChange" />
-
-        <EditText
-            android:id="@+id/editTextSizeChange"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/ORDERS_SIZE"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextQuantityChange"
-            app:layout_constraintStart_toStartOf="@+id/textViewStatus"
-            app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

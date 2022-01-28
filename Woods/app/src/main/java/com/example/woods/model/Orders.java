@@ -11,17 +11,19 @@ public class Orders {
     private int users_id;
     private String street;
     private int quantity;
-    private String size;
     private String status;
 
-    public Orders(int id, int woods_id, int users_id, String street, int quantity, String size, String status) {
+    public Orders(int id, int woods_id, int users_id, String street, int quantity, String status) {
         this.id = id;
         this.woods_id = woods_id;
         this.users_id = users_id;
         this.street = street;
         this.quantity = quantity;
-        this.size = size;
         this.status = status;
+    }
+
+    public static Orders createOrder(int woods_id,int users_id,String street, int quantity, String status){
+        return new Orders(0,woods_id,users_id,street,quantity,status);
     }
 
     public int getId() {
@@ -62,14 +64,6 @@ public class Orders {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public String getStatus() {

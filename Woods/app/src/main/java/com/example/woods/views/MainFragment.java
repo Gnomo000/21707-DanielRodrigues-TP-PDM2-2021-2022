@@ -85,8 +85,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_home, menu);
-        menu.add(0, 1, 1, menuIconWithText(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_edit, null)), getResources().getString(R.string.EDITPROFILE)));
-        menu.add(0, 2, 2, menuIconWithText(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_logout, null)), getResources().getString(R.string.LOGOUT)));
+        menu.add(0, 1, 1, menuIconWithText(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_cart, null)), getResources().getString(R.string.MY_ORDERS)));
+        menu.add(0, 2, 2, menuIconWithText(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_edit, null)), getResources().getString(R.string.EDITPROFILE)));
+        menu.add(0, 3, 3, menuIconWithText(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_logout, null)), getResources().getString(R.string.LOGOUT)));
     }
 
     private CharSequence menuIconWithText(Drawable drawable, String title) {
@@ -101,10 +102,18 @@ public class MainFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case 1:
+                NavDirections action0 = MainFragmentDirections.actionMainFragmentToOrdersFragment();
+                NavHostFragment.findNavController(MainFragment.this).navigate(action0);
+                return true;
             case 2:
+                NavDirections action1 = MainFragmentDirections.actionMainFragmentToProfileFragment();
+                NavHostFragment.findNavController(MainFragment.this).navigate(action1);
+                return true;
+            case 3:
                 mViewModel.clearSession();
-                NavDirections action = MainFragmentDirections.actionMainFragmentToLoginFragment();
-                NavHostFragment.findNavController(MainFragment.this).navigate(action);
+                NavDirections action2 = MainFragmentDirections.actionMainFragmentToLoginFragment();
+                NavHostFragment.findNavController(MainFragment.this).navigate(action2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
