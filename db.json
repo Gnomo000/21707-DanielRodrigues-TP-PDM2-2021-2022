@@ -18,14 +18,14 @@
         "id": 1,
         "wood_type": "Pine",
         "color": "Brown",
-        "size": "1920 x 1080",
+        "size": "100cm x 40cm x 3cm",
         "quantity": 25,
         "image": "https://t4.ftcdn.net/jpg/04/46/38/67/360_F_446386710_fQsGQPCGxed9ctgPvsUKSGyH9CxiOfuy.jpg"
     },{
         "id": 2,
         "wood_type": "Birch",
         "color": "White",
-        "size": "1920 x 1080",
+        "size": "10cm x 80cm x 5cm",
         "quantity": 78,
         "image": "https://t4.ftcdn.net/jpg/02/21/96/23/360_F_221962335_x5UpEX5iKYbaTyqHwfmdWlbPzJ8SJPZ6.jpg"
     }],
